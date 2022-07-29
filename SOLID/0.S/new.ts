@@ -97,8 +97,8 @@ class Engine{
 const musicToggleElement = <HTMLElement>document.querySelector('#music-toggle');
 const musicSliderElement = <HTMLInputElement>document.querySelector('#music-slider');
 const engineToggleElement = <HTMLInputElement>document.querySelector('#engine-toggle');
-const addFuelForm = document.querySelector('#add-fuel-form');
-const addFuelInput = <HTMLFormElement>document.querySelector('#add-fuel-input');
+const addFuelForm = <HTMLFormElement>document.querySelector('#add-fuel-form');
+const addFuelInput = <HTMLInputElement>document.querySelector('#add-fuel-input');
 const fuelLevelElement = <HTMLElement>document.querySelector('#fuel-level');
 const milesElement = <HTMLElement>document.querySelector('#miles-value');
 const audioElement = <HTMLAudioElement>document.querySelector('#car-music');
