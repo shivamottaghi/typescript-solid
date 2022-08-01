@@ -27,7 +27,7 @@ and looking at different examples.
 
 I used Parcel to compile TS to JS and the code structure is as below :
 
-![](0-S Class Diagram.png)
+![ClassDiagram](ClassDiagram.png)
 
 I create an instance of the Engine and Radio in the Car constructor.
 Then use getters to access them from outside the class. I thought about separating the fuel tank too, but after a 
