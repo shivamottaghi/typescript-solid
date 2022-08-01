@@ -1,6 +1,6 @@
 # typescript-solid
 
-## What is going on
+## What is this project about?
 This project consists of TypeScript and Parcel installation and five OOP principles that
 every programmer needs to know. The goal is to study and research and make some documentation.
 
