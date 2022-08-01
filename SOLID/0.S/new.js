@@ -21,7 +21,7 @@ class Car {
     // it is better to provide a specific method for this instead of a generic setter.
     // with a setter there is always the chance of somebody lowering the fuel amount by accident.
     drive() {
-        if (this._engine.engineStatus === false || this.engine.fuel <= 0) {
+        if (this.engine.engineStatus === false || this.engine.fuel <= 0) {
             //what I am doing here is a good principle called "failing early"
             // If you have some conditions you need to check, that will exclude most of the code in your function check that first
             // This prevents your "happy path" of code to be deeply indented.
