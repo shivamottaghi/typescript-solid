@@ -1,3 +1,4 @@
+/*
 //This is called a Union, the discountType can only contain the following 2 values:
 type discountType = "variable" | "fixed" | "none";
 
@@ -118,4 +119,4 @@ cart.products.forEach((product) => {
     tr.appendChild(td);
 
     tableElement.appendChild(tr);
-});
+});*/
