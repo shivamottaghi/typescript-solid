@@ -97,11 +97,11 @@ cart.addProduct(new Product('Chair', 25, new Discount("fixed", 10)));
 cart.addProduct(new Product('Table', 50, new Discount("variable", 25)));
 cart.addProduct(new Product('Bed', 100, new Discount("none")));
 
-const tableElement = document.querySelector('#cart tbody');
+const tableElement = <HTMLTableElement>document.querySelector('#cart tbody');
 cart.products.forEach((product) => {
-    let tr = document.createElement('tr');
+    let tr = <HTMLTableRowElement>document.createElement('tr');
 
-    let td = document.createElement('td');
+    let td = <HTMLTableCellElement>document.createElement('td');
     td.innerText = product.name;
     tr.appendChild(td);
 
