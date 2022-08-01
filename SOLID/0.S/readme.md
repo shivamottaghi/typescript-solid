@@ -19,5 +19,23 @@ Make a new type of Engine that also consumes Fuel
 
 
 -----
-## Goal
+### How I solved this exercise
+
+To be honest this exercise was a challenge for me. I wasn't sure if I am on the right track or not. I talked about
+Single responsibility principle with a lot of my classmates and tried to understand it by searching about it online
+and looking at different examples.
+
+I used Parcel to compile TS to JS and the code structure is as below :
+
+![img.png](0-S Class Diagram.png)
+
+I create an instance of the Engine and Radio in the Car constructor.
+Then use getters to access them from outside the class. I thought about separating the fuel tank too, but after a 
+lot of discussion with my classmates, figured it might be overdoing it and as my coach said, 
+it might be like "going to the rabbit hole".
+
+
+I am still not sure if what I have now is correct, and I know that there are always some ways to make it better,
+but I think it's good enough to move on to the next exercise!
+
 
