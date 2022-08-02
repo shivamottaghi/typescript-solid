@@ -1,6 +1,6 @@
 
 export interface IDiscount {
-    value: number;
+    //_value: number;
     apply: (price:number) => number;
     showCalculation: (price:number)=> string;
 }
