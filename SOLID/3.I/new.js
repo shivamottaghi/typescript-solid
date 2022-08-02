@@ -37,7 +37,14 @@ class Admin {
         this._password = prompt('What is your new password?');
     }
 }
-// class GoogleBot implements UserAuth {}
+class GoogleBot {
+    checkGoogleLogin(token) {
+        return (token === this._googleToken);
+    }
+    setGoogleToken(token) {
+        this._googleToken = token;
+    }
+}
 const passwordElement = document.querySelector('#password');
 const typePasswordElement = document.querySelector('#typePassword');
 const typeGoogleElement = document.querySelector('#typeGoogle');
@@ -46,27 +53,41 @@ const loginAsAdminElement = document.querySelector('#loginAsAdmin');
 const resetPasswordElement = document.querySelector('#resetPassword');
 let guest = new User;
 let admin = new Admin;
+let google = new GoogleBot;
 document.querySelector('#login-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    let user = loginAsAdminElement.checked ? admin : guest;
+    let user;
+    if (loginAsAdminElement.checked) {
+        user = admin;
+    }
+    else if (!loginAsAdminElement.checked && typeGoogleElement.checked) {
+        user = google;
+    }
+    else {
+        user = guest;
+    }
     let auth = false;
     if (user == guest) {
-        user.setGoogleToken('secret_token_google');
+        //user.setGoogleToken('secret_token_google');
         user.setFacebookToken('secret_token_fb');
         switch (true) {
             case typePasswordElement.checked:
                 auth = user.checkPassword(passwordElement.value);
                 break;
-            case typeGoogleElement.checked:
+            /*case typeGoogleElement.checked:
                 auth = user.checkGoogleLogin('secret_token_google');
-                break;
+                break;*/
             case typeFacebookElement.checked:
                 debugger;
                 auth = user.getFacebookLogin('secret_token_fb');
                 break;
         }
     }
-    else {
+    else if (user == google) {
+        user.setGoogleToken('secret_token_google');
+        auth = user.checkGoogleLogin('secret_token_google');
+    }
+    else if (user == admin) {
         if (!typeGoogleElement.checked && !typeFacebookElement.checked) {
             auth = user.checkPassword(passwordElement.value);
         }
