@@ -1,42 +1,10 @@
 "use strict";
-class Discount {
-    constructor(type, value = 0) {
-        this._type = type;
-        this._value = value;
-        if (this._type != 'none' && value <= 0) {
-            throw new Error('You cannot create a ' + this._type + ' discount with a negative value');
-        }
-    }
-    apply(price) {
-        //@todo: instead of using magic values as string in this, it would be a lot better to change them into constant. This would protect us from misspellings. Can you improve this?
-        if (this._type === "none") {
-            return price;
-        }
-        else if (this._type === "variable") {
-            return (price - (price * this._value / 100));
-        }
-        else if (this._type === "fixed") {
-            return Math.max(0, price - this._value);
-        }
-        else {
-            throw new Error('Invalid type of discount');
-        }
-    }
-    showCalculation(price) {
-        if (this._type === "none") {
-            return "No discount";
-        }
-        else if (this._type === "variable") {
-            return price + " € -  " + this._value + "%";
-        }
-        else if (this._type === "fixed") {
-            return price + "€ -  " + this._value + "€ (min 0 €)";
-        }
-        else {
-            throw new Error('Invalid type of discount');
-        }
-    }
-}
+Object.defineProperty(exports, "__esModule", { value: true });
+const Variable_1 = require("./Variable");
+const None_1 = require("./None");
+const Fixed_1 = require("./Fixed");
+//This is called a Union, the discountType can only contain the following 2 values:
+//type discountType = "variable" | "fixed" | "none";
 class Product {
     constructor(name, price, discount) {
         this._name = name;
@@ -74,10 +42,10 @@ class shoppingBasket {
     }
 }
 let cart = new shoppingBasket();
-cart.addProduct(new Product('Chair', 25, new Discount("fixed", 10)));
+cart.addProduct(new Product('Chair', 25, new Fixed_1.Fixed(10)));
 //cart.addProduct(new Product('Chair', 25, new Discount("fixed", -10)));
-cart.addProduct(new Product('Table', 50, new Discount("variable", 25)));
-cart.addProduct(new Product('Bed', 100, new Discount("none")));
+cart.addProduct(new Product('Table', 50, new Variable_1.Variable(25)));
+cart.addProduct(new Product('Bed', 100, new None_1.None()));
 const tableElement = document.querySelector('#cart tbody');
 cart.products.forEach((product) => {
     let tr = document.createElement('tr');
