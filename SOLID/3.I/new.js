@@ -30,20 +30,8 @@ class Admin {
     constructor() {
         this._password = 'admin';
     }
-    checkGoogleLogin(token) {
-        return false;
-    }
     checkPassword(password) {
         return (password === this._password);
-    }
-    getFacebookLogin(token) {
-        return false;
-    }
-    setFacebookToken() {
-        throw new Error('Function not supported for admins');
-    }
-    setGoogleToken() {
-        throw new Error('Function not supported for admins');
     }
     resetPassword() {
         this._password = prompt('What is your new password?');
@@ -61,24 +49,29 @@ let admin = new Admin;
 document.querySelector('#login-form').addEventListener('submit', (event) => {
     event.preventDefault();
     let user = loginAsAdminElement.checked ? admin : guest;
-    if (!loginAsAdminElement.checked) {
+    let auth = false;
+    if (user == guest) {
         user.setGoogleToken('secret_token_google');
         user.setFacebookToken('secret_token_fb');
+        switch (true) {
+            case typePasswordElement.checked:
+                auth = user.checkPassword(passwordElement.value);
+                break;
+            case typeGoogleElement.checked:
+                auth = user.checkGoogleLogin('secret_token_google');
+                break;
+            case typeFacebookElement.checked:
+                debugger;
+                auth = user.getFacebookLogin('secret_token_fb');
+                break;
+        }
+    }
+    else {
+        if (!typeGoogleElement.checked && !typeFacebookElement.checked) {
+            auth = user.checkPassword(passwordElement.value);
+        }
     }
     debugger;
-    let auth = false;
-    switch (true) {
-        case typePasswordElement.checked:
-            auth = user.checkPassword(passwordElement.value);
-            break;
-        case typeGoogleElement.checked:
-            auth = user.checkGoogleLogin('secret_token_google');
-            break;
-        case typeFacebookElement.checked:
-            debugger;
-            auth = user.getFacebookLogin('secret_token_fb');
-            break;
-    }
     if (auth) {
         alert('login success');
     }
