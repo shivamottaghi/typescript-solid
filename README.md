@@ -1,4 +1,7 @@
-# typescript-solid
+# What is TypeScript
+TypeScript is JavaScript with some extra functionality. TS supports static typing which means that when defining
+a variable, we also need to define its type. This feature will help us to avoid some errors that might occur because
+of wrong type annotation.
 
 ## What is this project about?
 This project consists of TypeScript and Parcel installation and five OOP principles that
