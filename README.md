@@ -45,5 +45,31 @@ Well , I thought it's better to start with four pillars of OOP and then get to t
        }
      }
      ```
+     
 ---
+
+### SOLID principles
+
+1. [Single Responsibility](./SOLID/0.S)
+   - >> “Classes, functions or modules have a single reason to change”
+
+2. [Open-Closed](./SOLID/1.O)
+   - >> “Open to extension closed to modification”
+
+3. [Liskov Substitution](./SOLID/2.L)
+   - >> “For b subtype of a, a may be replaced by type b”
+
+4. [Interface Segregation](./SOLID/3.I)
+   - >> "The interface of a program should be split in a way that the user/client would only have access to the necessary methods related to their needs."
+
+5. [Dependency Inversion](./SOLID/4.D)
+   - >> “Between a high-level module and a low-level one the interaction should be thought of as an abstract interaction between them”
+
+---
+
+#### Source :
+
+[Brutally Solid TypeScript](https://itnext.io/brutally-solid-typescript-ba745585f440) <br>
+[SOLID Definition – the SOLID Principles of Object-Oriented Design Explained](https://www.freecodecamp.org/news/solid-principles-single-responsibility-principle-explained/#:~:text=The%20interface%20segregation%20principle%20states,methods%20related%20to%20their%20needs.)
+
 
