@@ -19,6 +19,14 @@ Make a new type of Engine that also consumes Fuel
 
 
 -----
+
+### What does SRP mean in my own words
+The idea of SRP is that each module, function or class in our program should have one single responsibility.
+It should have only one thing to change and only one purpose to exist.
+
+Imagine if we have a huge class with a lot of functionality, like the car class in this exercise, how hard would it be
+for another person to reuse our code or add some extra features to it. 
+
 ### How I solved this exercise
 
 To be honest this exercise was a challenge for me. I wasn't sure if I am on the right track or not. I talked about
