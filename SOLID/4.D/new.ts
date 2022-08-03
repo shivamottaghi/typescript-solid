@@ -1,13 +1,13 @@
-interface baker {
+interface Ibaker {
     turnOn():void;
     turnOff():void;
     bake(item:string):void;
 }
 
-class Oven {
+class Oven implements Ibaker{
     private _isOn : boolean;
 
-    public lightGas() : void
+    public turnOn() : void
     {
         setTimeout(function (){
             document.getElementById('target').innerHTML += "<p>"+new Date().getHours()+":"+new Date().getMinutes()+" : THE GAS IS ON!</p>";
@@ -16,7 +16,7 @@ class Oven {
         this._isOn = true;
     }
 
-    public extinguishGas() : void
+    public turnOff() : void
     {
         setTimeout(function (){
             document.getElementById('target').innerHTML += "<p>"+new Date().getHours()+":"+new Date().getMinutes()+" : THE GAS IS OFF!</p><hr>";
@@ -43,24 +43,63 @@ class Oven {
     }
 }
 
+class ElectricOven implements Ibaker{
+    private _isOn : boolean;
+
+    public turnOn() : void
+    {
+        setTimeout(function (){
+            document.getElementById('target').innerHTML += "<p>"+new Date().getHours()+":"+new Date().getMinutes()+" : THE POWER IS ON!</p>";
+        }, 1000);
+        console.log("THE POWER IS ON!"); //insert fart humor here
+        this._isOn = true;
+    }
+
+    public turnOff() : void
+    {
+        setTimeout(function (){
+            document.getElementById('target').innerHTML += "<p>"+new Date().getHours()+":"+new Date().getMinutes()+" : THE POWER IS OFF!</p><hr>";
+        }, 3000);
+        console.log("THE POWER IS OFF!"); //insert fart humor here
+        this._isOn = false;
+    }
+
+    public bake(item : string)
+    {
+        if(this._isOn) {
+            setTimeout(function (){
+                document.getElementById('target').innerHTML += "<p>"+new Date().getHours()+":"+new Date().getMinutes()+" : Now baking " + item + " !</p>";
+            }, 2000);
+            console.log("Now baking " + item + "!");
+        }
+        else
+        {
+            setTimeout(function (){
+                document.getElementById('target').innerHTML += "<p>"+new Date().getHours()+":"+new Date().getMinutes()+" : there is no power!</p>";
+            }, 2000);
+            console.log("there is no power!");//insert fart humor here
+        }
+    }
+}
 
 class Restaurant {
     private _name : string;
-    private _oven : Oven = new Oven();
+    private _baker : Ibaker;
 
-    constructor(name : string) {
+    constructor(name : string , baker: Ibaker) {
         this._name = name;
+        this._baker = baker;
     }
 
     public Cook(item : string) {
-        this._oven.lightGas();
-        this._oven.bake(item);
-        this._oven.extinguishGas();
+        this._baker.turnOn();
+        this._baker.bake(item);
+        this._baker.turnOff();
     }
 }
 
 
-let bakery = new Restaurant("Bakery");
+let bakery = new Restaurant("Bakery" , new ElectricOven());
 bakery.Cook("cookies");
 
 //Now if we want to add a new restaurant with an ELECTRIC cooker, we are gonna be in a hot mess ...
